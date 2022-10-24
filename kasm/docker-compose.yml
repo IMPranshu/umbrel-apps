@@ -1,0 +1,21 @@
+version: "2.1"
+
+services:
+
+  app_proxy:
+    environment:
+      APP_HOST: "10.21.21.66"
+      APP_PORT: 7681
+
+  server:
+    image: linuxserver/kasm:latest
+    privileged: true
+    restart: on-failure
+    environment:
+      - KASM_PORT=443
+    volumes:
+      - ${APP_DATA_DIR}/data/data:/opt
+      - ${APP_DATA_DIR}/data/profiles:/profiles
+    ports:
+      - 3000:3000
+      - 443:443
