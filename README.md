@@ -300,7 +300,7 @@ Once Umbrel has started, the Web UI will be accessible at the IP address of the 
 
 ```sh
 cd umbrel
-sudo ./scripts/repo set https://github.com/<username>/umbrel-apps.git
+sudo ./scripts/repo add https://github.com/<username>/umbrel-apps.git
 sudo ./scripts/repo update
 ```
 
