@@ -6,6 +6,12 @@ services:
     restart: on-failure
     links:
       - db
+    environment:
+      - DB_HOST=db
+      - DB_USERNAME=piwigo
+      - DB_PASSWORD=piwigo
+      - DB_DATABASE=piwigo
+      - DB_PORT=3306
     volumes:
       - ${APP_DATA_DIR}/data/config:/config
       - ${APP_DATA_DIR}/data/gallery:/gallery
