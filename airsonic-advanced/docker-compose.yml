@@ -6,7 +6,7 @@ services:
       APP_HOST: airsonic_adv_app_proxy
       APP_PORT: 4040
   server:
-    image: linuxserver/airsonic-advanced:latest
+    image: linuxserver/airsonic-advanced:11.0.0-SNAPSHOT.20220625052932-ls38
     restart: on-failure
     environment:
       - PUID=1000
