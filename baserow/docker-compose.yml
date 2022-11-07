@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+  app_proxy:
+    environment:
+      APP_HOST: $APP_BASEROW_IP
+      APP_PORT: $APP_BASEROW_PORT
+
+  server:
+    container_name: baserow
+    environment:
+      - 'BASEROW_PUBLIC_URL=http://$APP_BASEROW_IP:$APP_BASEROW_PORT'
+    volumes:
+      - ${APP_DATA_DIR}/data:/baserow/data'
+    restart: unless-stopped
+    image: 'baserow/baserow:1.10.1'
