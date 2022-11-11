@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: wireguard
+      APP_PORT: 51820
+  server:
+    container_name: wireguard
+    image: lscr.io/linuxserver/wireguard:latest
+    restart: on-failure
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - INTERFACE=eth0
+    volumes:
+      - ${APP_DATA_DIR}/config:/config
+      - ${APP_DATA_DIR}/data:/lib/modules
+
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+
