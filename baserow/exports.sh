@@ -2,8 +2,8 @@ export SECRET_KEY='baserow'
 export DATABASE_PASSWORD='oneoioioiroijt%%&^%&%ijs'
 export REDIS_PASSWORD='8767867687'
 export BASEROW_PUBLIC_URL=http://pk-ubutnu.local
-export BASEROW_CADDY_ADDRESSES=:3001
-export WEB_FRONTEND_PORT=80
+export BASEROW_CADDY_ADDRESSES=:80
+export WEB_FRONTEND_PORT=3001
 export HOST_PUBLISH_IP=0.0.0.0
 
 export EMAIL_SMTP=no
