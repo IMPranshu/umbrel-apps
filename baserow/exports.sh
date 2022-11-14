@@ -1,4 +1,4 @@
-export SECRET_KEY={ mysupersecretpasswordforbaserow }
+export SECRET_KEY='baserow'
 export DATABASE_PASSWORD='oneoioioiroijt%%&^%&%ijs'
 export REDIS_PASSWORD='8767867687'
 export BASEROW_PUBLIC_URL=http://pk-ubutnu.local
