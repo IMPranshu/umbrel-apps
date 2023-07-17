@@ -1,0 +1,52 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: overleaf_server_1
+      APP_PORT: 80
+
+  server:
+    restart: on-failure
+    image: impranshu/overleaf:v1
+    depends_on:
+      mongo:
+        condition: service_healthy
+      redis:
+        condition: service_started
+
+    links:
+      - mongo
+      - redis
+    stop_grace_period: 60s
+    volumes:
+      - ${APP_DATA_DIR}/sharelatex_data:/var/lib/sharelatex
+    environment:
+      SHARELATEX_APP_NAME: Overleaf Community Edition
+      SHARELATEX_MONGO_URL: mongodb://mongo/sharelatex
+      SHARELATEX_REDIS_HOST: redis
+      REDIS_HOST: redis
+      ENABLED_LINKED_FILE_TYPES: "project_file,project_output_file"
+      ENABLE_CONVERSIONS: "true"
+      EMAIL_CONFIRMATION_DISABLED: "true"
+      TEXMFVAR: /var/lib/sharelatex/tmp/texmf-var
+  mongo:
+    restart: on-failure
+    image: mongo:4.4
+    expose:
+      - 27017
+    volumes:
+      - ${APP_DATA_DIR}/mongo_data:/data/db
+    healthcheck:
+      test: echo 'db.stats().ok' | mongo localhost:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+  redis:
+    restart: on-failure
+    image: redis:6.2
+    expose:
+      - 6379
+    volumes:
+      - ${APP_DATA_DIR}/redis_data:/data
