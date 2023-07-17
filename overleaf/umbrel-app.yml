@@ -1,0 +1,32 @@
+manifestVersion: 1
+id: overleaf
+category: files
+name: Overleaf
+version: "1"
+tagline: Open-source online real-time collaborative LaTeX editor.
+description: >-
+  Overleaf is an online LaTeX writing tool that allows you to easily create and collaborate on perfectly formatted scientific and technical documents.
+
+  Create LaTeX documents easily and quickly
+  Overleaf's powerful LaTeX editor allows you to create complex documents efficiently and intuitively.
+
+  Write beautiful and highly customized documents
+  Create complex equations, tables, and more
+  Easily manage your footnotes, references, and bibliographies
+  Descriptive error messages to help you troubleshoot
+
+developer: The Overleaf Team
+website: https://www.overleaf.com/
+dependencies: []
+repo: https://github.com/overleaf/overleaf
+support: https://github.com/overleaf/overleaf/wiki
+port: 4020
+gallery:
+  - 1.jpg
+  - 2.jpg
+  - 3.jpg
+path: ""
+deterministicPassword: false
+torOnly: false
+submitter: Pranshu Agrawal
+submission:
