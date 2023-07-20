@@ -1,0 +1,49 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: polr_web_1
+      APP_PORT: 8080
+
+  web:
+    image: impranshu/polr-local:v2.3.0
+    environment: DB_HOST=mariadb
+      DB_PORT=3306
+      DB_DATABASE=polr
+      DB_USERNAME=polr
+      DB_PASSWORD=password
+      DB_ROOT_PASSWORD=password
+      ADMIN_USERNAME=admin
+      ADMIN_PASSWORD=password
+      ADMIN_EMAIL=pranshukumar1999@gmail.com
+
+      APP_NAME=Polr Url Shortner for Umbrel
+      APP_ADDRESS=${DEVICE_DOMAIN_NAME}:8811
+
+      POLR_ALLOW_ACCT_CREATION=false
+      POLR_ACCT_ACTIVATION=false
+      POLR_ACCT_CREATION_RECAPTCHA=false
+      POLR_BASE=62
+
+      SETTING_SHORTEN_PERMISSION=false
+      SETTING_PUBLIC_INTERFACE=true
+      SETTING_AUTO_API=false
+      SETTING_PSEUDORANDOM_ENDING=false
+      SETTING_ADV_ANALYTICS=false
+    depends_on:
+      - mariadb
+
+  mariadb:
+    image: mariadb
+    container_name: mariadb
+    restart: always
+    expose:
+      - "3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - /var/lib/mysql
